@@ -2,10 +2,10 @@
     echo '<div class ="container-fluid">
     <div class ="row">';
     foreach($clients as $key => $value ){
-      $firstLetter = substr($value['firstName'] , 0 ,1);
-        if($firstLetter == "M"){
-       echo '
-        <div class ="col-2">
+      $result = mysql_query('SELECT * FROM `clients` WHERE `firstName` LIKE `M%`');
+
+        if($result){
+       echo' <div class="col-2">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">'.$value['id'].'</h5>
@@ -14,7 +14,7 @@
           if($value['cardNumber'] != NULL){
             echo "Numero de carte : ".$value['cardNumber'];
           }else{
-            echo "<p class ='notNumber p-0'> Cet personne n'a pas de carte </p>";
+            echo "<p class ='notNumber p-0'> Cet personne n'a pas de carte </p>"";
           }  
           
        echo '</div>
