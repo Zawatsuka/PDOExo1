@@ -5,7 +5,7 @@
        echo '
         <div class ="col-2">
        <div class="card" style="width: 18rem;">
-        <div class="card-body">
+        <div class="card-body p-2">
           <h5 class="card-title">'.$value['id'].'</h5>
           <h6 class="card-subtitle mb-2 text-muted">'.$value['firstName'].' '.$value['lastName'].'</h6>
           <p class="card-text">Date de Naissance = '.$value['birthDate'].'</p>';
