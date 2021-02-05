@@ -5,14 +5,13 @@
     $password ='';
     
     try{
-        $connectToDB = new PDO($dsn,$user,$password,[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-        $query= $connectToDB->query('SELECT * FROM `clients`');
+        $BDD = new PDO($dsn,$user,$password,[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        $query= $BDD->query('SELECT * FROM `clients`');
         $clients = $query->fetchAll();
     }catch(PDOException $e){
         echo 'Connexion echouée : '.$e->getMessage();
     }
     include('views/template/header.php');
-
 
     // EXO1 
     //  AFFICHER LES CLIENTS 

@@ -1,26 +1,30 @@
 <?php 
+  
     echo '<div class ="container-fluid">
-    <div class ="row">';
-    foreach($clients as $key => $value ){
-      $result = mysql_query('SELECT * FROM `clients` WHERE `firstName` LIKE `M%`');
-
-        if($result){
+    <div class="row">';
+    $request = $BDD->prepare('SELECT * FROM clients WHERE lastName LIKE :search');  
+    $request->execute(array(':search'=>'M%'));
+    $clients = $request->fetchAll(PDO::FETCH_ASSOC);
+    foreach($clients as $key => $value){
+      // var_dump($clients);
+      //   echo '<hr width="100%"/>';
+      // var_dump($key);
+      // echo '<hr width="100%"/>';
+      // var_dump($value);
        echo' <div class="col-2">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title">'.$value['id'].'</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">'.$value['firstName'].' '.$value['lastName'].'</h6>
-                    <p class="card-text">Date de Naissance = '.$value['birthDate'].'</p>';
-          if($value['cardNumber'] != NULL){
-            echo "Numero de carte : ".$value['cardNumber'];
+                    <h5 class="card-title">'.$clients[$key]['id'].'</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">'.$clients[$key]['firstName'].' '.$clients[$key]['lastName'].'</h6>
+                    <p class="card-text">Date de Naissance = '.$clients[$key]['birthDate'].'</p>';
+          if($clients[$key]['cardNumber'] != NULL){
+            echo "Numero de carte : ".$clients[$key]['cardNumber'];
           }else{
-            echo "<p class ='notNumber p-0'> Cet personne n'a pas de carte </p>"";
+            echo "<p class ='notNumber p-0'> Cet personne n'a pas de carte </p>";
           }  
-          
-       echo '</div>
+         echo '</div>
         </div>
       </div>';
-        }
     }
 
     echo '</div>
